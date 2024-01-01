@@ -14,10 +14,14 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@supabase/auth-ui-react": "^0.4.6",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.39.1",
     "@tabler/icons": "^1.119.0",
     "@tabler/icons-react": "^2.44.0",
-    "@tanstack/react-table": "^8.11.0",
+    "@tanstack/react-query": "^5.15.5",
+    "@tanstack/react-table": "^8.11.2",
     "date-fns": "^3.0.0",
     "framer-motion": "^10.16.16",
     "immer": "^10.0.3",
@@ -29,14 +33,15 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.14.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/node": "^20",
+    "@types/node": "^20.10.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.1.1",
-    "typescript": "^5"
+    "typescript": "^5.3.3"
   }
 }
