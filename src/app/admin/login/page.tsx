@@ -1,8 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { FormEventHandler, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Button, Container, Input, VStack, useToast } from '@chakra-ui/react'
+import {
+  Button,
+  Container,
+  Input,
+  VStack,
+  chakra,
+  useToast,
+} from '@chakra-ui/react'
 import { createBrowserClient } from '@supabase/ssr'
 
 export default function LoginPage() {
@@ -15,7 +22,8 @@ export default function LoginPage() {
     process.env.NEXT_PUBLIC_SUPABASE_KEY,
   )
 
-  const handleSignIn = async () => {
+  const handleSignIn: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault()
     const response = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -30,26 +38,28 @@ export default function LoginPage() {
       })
     }
 
-    router.replace('/admin/view')
+    router.replace('/admin')
   }
 
   return (
-    <Container h='100%'>
-      <VStack justify='center' gap='5' h='100%'>
-        <Input
-          type='email'
-          name='email'
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <Input
-          type='password'
-          name='password'
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-        <Button onClick={handleSignIn}>Sign in</Button>
-      </VStack>
-    </Container>
+    <chakra.form display='contents' onSubmit={handleSignIn}>
+      <Container h='100%'>
+        <VStack justify='center' gap='5' h='100%'>
+          <Input
+            type='email'
+            name='email'
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+          <Input
+            type='password'
+            name='password'
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+          <Button type='submit'>Sign in</Button>
+        </VStack>
+      </Container>
+    </chakra.form>
   )
 }

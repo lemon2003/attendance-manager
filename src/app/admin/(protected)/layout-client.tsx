@@ -1,8 +1,15 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Box, Button, Container, Flex, HStack, Heading } from '@chakra-ui/react'
-import { createBrowserClient } from '@supabase/ssr'
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  HStack,
+  Heading,
+} from '@chakra-ui/react'
+import { supabase } from '@/client/supabase'
 
 export function ProtectedLayoutClient({
   children,
@@ -11,14 +18,9 @@ export function ProtectedLayoutClient({
 }) {
   const router = useRouter()
 
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_KEY,
-  )
-
   const handleSignOut = async () => {
     await supabase.auth.signOut()
-    router.push('/')
+    router.push('/admin/login')
   }
   return (
     <Flex w='100%' h='100%' direction='column'>
