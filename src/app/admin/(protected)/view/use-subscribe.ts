@@ -3,7 +3,7 @@ import { RealtimePostgresChangesPayload } from '@supabase/supabase-js'
 import { useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/client/supabase'
 import { UserStatesColumns, UsersWithStateColumns } from '@/schema/database'
-import { databaseQueryKey } from './page'
+import { databaseQueryKey } from './page-client'
 
 export const useSubscribe = () => {
   const queryClient = useQueryClient()

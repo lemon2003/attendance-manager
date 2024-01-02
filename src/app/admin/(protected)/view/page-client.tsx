@@ -4,7 +4,8 @@ import React, { useMemo } from 'react'
 import { Grid, GridItem, GridProps } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { UsersWithStateColumns } from '@/schema/database'
-import { databaseQueryKey } from '../page'
+
+export const databaseQueryKey = 'database'
 
 interface ColumnProps extends GridProps {
   cellCount?: number
