@@ -27,7 +27,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { supabase } from '@/client/supabase'
-import { UsersColumns, UsersWithStateColumns } from '@/schema/database'
+import { UsersColumns } from '@/schema/database'
 
 export interface FormRecord {
   class: number

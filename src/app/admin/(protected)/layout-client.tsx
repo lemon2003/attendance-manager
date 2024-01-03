@@ -1,14 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  HStack,
-  Heading,
-} from '@chakra-ui/react'
+import { Box, Button, Container, Flex, HStack, Heading } from '@chakra-ui/react'
 import { supabase } from '@/client/supabase'
 
 export function ProtectedLayoutClient({
@@ -23,7 +16,7 @@ export function ProtectedLayoutClient({
     router.push('/admin/login')
   }
   return (
-    <Flex w='100%' h='100%' direction='column'>
+    <Flex w='100%' h='100%' direction='column' bg='gray.100'>
       <Box
         borderBottomWidth='1px'
         borderBottomColor='gray.200'
@@ -33,10 +26,10 @@ export function ProtectedLayoutClient({
       >
         <Container maxW='container.xl'>
           <HStack justify='space-between' py='1'>
-            <Heading size='md'>Admin Page</Heading>
+            <Heading size='md'>{'ダッシュボード'}</Heading>
             <HStack>
               <Button size='sm' variant='ghost' onClick={handleSignOut}>
-                {'Sign out'}
+                {'サインアウト'}
               </Button>
             </HStack>
           </HStack>

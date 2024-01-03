@@ -16,29 +16,35 @@ export const useSubscribe = () => {
         case 'UPDATE': {
           queryClient.setQueryData(
             [databaseQueryKey],
-            (cachedRows: UsersWithStateColumns[] | undefined) =>
-              cachedRows?.map?.((cachedRow) =>
-                newRow.class === cachedRow.class &&
-                newRow.number === cachedRow.number
-                  ? { ...cachedRow, ...newRow }
-                  : cachedRow,
+            (cache: UsersWithStateColumns[][] | undefined) =>
+              cache?.map?.((cachedColumn) =>
+                cachedColumn[0].class === newRow.class
+                  ? cachedColumn.map((cachedRow) =>
+                      cachedRow.number === newRow.number
+                        ? { ...cachedRow, ...newRow }
+                        : cachedRow,
+                    )
+                  : cachedColumn,
               ),
           )
           break
         }
         case 'DELETE': {
           queryClient.setQueryData(
-            ['database'],
-            (cachedRows: UsersWithStateColumns[] | undefined) =>
-              cachedRows?.map?.((cachedRow) =>
-                oldRow.class === cachedRow.class &&
-                oldRow.number === cachedRow.number
-                  ? {
-                      ...cachedRow,
-                      state: 'unspecified',
-                      updated_at: null,
-                    }
-                  : cachedRow,
+            [databaseQueryKey],
+            (cache: UsersWithStateColumns[][] | undefined) =>
+              cache?.map?.((cachedColumn) =>
+                cachedColumn[0].class === oldRow.class
+                  ? cachedColumn.map((cachedRow) =>
+                      cachedRow.number === oldRow.number
+                        ? {
+                            ...cachedRow,
+                            state: 'unspecified',
+                            updated_at: null,
+                          }
+                        : cachedRow,
+                    )
+                  : cachedColumn,
               ),
           )
           break
