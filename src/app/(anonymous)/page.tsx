@@ -83,8 +83,8 @@ export default function FormPage() {
       .upsert({
         class: selectedUser!.class as number,
         number: selectedUser!.number as number,
+        state: 'attended',
       })
-      .select()
 
     setIsSubmitting(false)
 
